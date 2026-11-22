@@ -1,1 +1,205 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08172e">
+<title>MONEY WAY</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#08172e;color:#fff;font-family:Arial,sans-serif;padding-bottom:85px}
+header{padding:22px 20px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:23px;font-weight:900;color:#e9bd65}
+.profile{background:#203451;padding:11px;border-radius:50%}
+.container{padding:0 18px}
+.card{background:linear-gradient(135deg,#183557,#0e2039);border:1px solid #b58b46;border-radius:20px;padding:23px;margin-bottom:20px}
+.small{color:#b8c4d4;font-size:13px}
+.balance{font-size:34px;font-weight:bold;margin:12px 0;color:#f2ce83}
+.btn{border:0;border-radius:12px;padding:14px;background:#d9ad60;color:#08172e;font-weight:bold;font-size:15px;cursor:pointer}
+.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:22px 0}
+.action{background:#142b47;border:1px solid #29415e;border-radius:15px;padding:14px 4px;text-align:center;cursor:pointer;font-size:12px}
+.action b{display:block;font-size:24px;margin-bottom:9px}
+h3{color:#e9bd65}
+.section{background:#10243e;padding:17px;border-radius:15px;margin-bottom:12px}
+.tx{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid #29415e}
+.tx:last-child{border:0}
+.green{color:#60d9a0}
+.red{color:#ff8585}
+nav{position:fixed;bottom:0;left:0;width:100%;background:#10243e;display:flex;justify-content:space-around;padding:13px 4px;border-top:1px solid #34445b}
+nav button{background:none;border:0;color:#c4ccda;font-size:11px;cursor:pointer}
+nav span{display:block;font-size:21px;margin-bottom:4px}
+.page{display:none}
+.page.active{display:block}
+input{width:100%;padding:15px;border-radius:10px;border:1px solid #52647b;background:#0b1c32;color:white;margin:9px 0;font-size:15px}
+button:active{opacity:.75}
+.center{text-align:center}
+.qr{background:white;color:#08172e;padding:20px;border-radius:15px;margin:20px auto;width:210px}
+.qrpattern{font-size:22px;line-height:1.15;letter-spacing:3px;overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">◆ MONEY WAY</div>
+<div class="profile">👤</div>
+</header>
+
+<main class="container">
+
+<section id="home" class="page active">
+<div class="card">
+<div class="small">DEMO WALLET BALANCE</div>
+<div class="balance" id="balance">₹5,000.00</div>
+<div class="small">Pay Easy, Live Easy.</div>
+</div>
+
+<div class="actions">
+<div class="action" onclick="show('send')"><b>↗</b>Send</div>
+<div class="action" onclick="show('receive')"><b>↙</b>Receive</div>
+<div class="action" onclick="show('scan')"><b>▦</b>Scan QR</div>
+<div class="action" onclick="show('history')"><b>◷</b>History</div>
+</div>
+
+<h3>Money Services</h3>
+<div class="section" onclick="show('send')">👤 &nbsp; To Mobile Number</div>
+<div class="section" onclick="show('send')">🏦 &nbsp; To UPI ID (Demo)</div>
+<div class="section" onclick="show('receive')">▦ &nbsp; My QR Code</div>
+
+<h3>Recent Transactions</h3>
+<div class="section" id="recent">
+<div class="small">No transactions yet</div>
+</div>
+</section>
+
+<section id="send" class="page">
+<h3>Send Money</h3>
+<div class="section">
+<div class="small">DEMO PAYMENT ONLY</div>
+<input id="receiver" placeholder="Receiver Name">
+<input id="upi" placeholder="Demo UPI ID (example@demo)">
+<input id="amount" type="number" min="1" max="5000" placeholder="Amount (₹)">
+<button class="btn" style="width:100%" onclick="sendMoney()">Continue Demo Payment</button>
+<p class="small">No real bank transfer. No actual money is sent.</p>
+</div>
+</section>
+
+<section id="receive" class="page center">
+<h3>Receive Money</h3>
+<div class="section">
+<p>YOUR DEMO PAYMENT QR</p>
+<div class="qr">
+<div class="qrpattern">▣ ▢ ▣ ▢ ▣<br>▢ ▣ ▢ ▣ ▢<br>▣ ▢ ▣ ▢ ▣<br>▢ ▣ ▣ ▢ ▣<br>▣ ▢ ▣ ▣ ▢</div>
+</div>
+<b>MONEY WAY</b>
+<p class="small">Demo QR only – not a valid UPI payment QR.</p>
+</div>
+</section>
+
+<section id="scan" class="page center">
+<h3>Scan & Pay</h3>
+<div class="section">
+<div style="font-size:60px">▦</div>
+<p>QR Scanner – Coming Soon</p>
+<p class="small">Camera scanning will be added in a future version. No real payments are supported.</p>
+</div>
+</section>
+
+<section id="history" class="page">
+<h3>Transaction History</h3>
+<div class="section" id="transactions">
+<div class="small">No transactions yet.</div>
+</div>
+</section>
+
+<section id="profile" class="page">
+<h3>My Profile</h3>
+<div class="section">
+<div style="font-size:45px">👤</div>
+<b>MONEY WAY Demo User</b>
+<p class="small">Demo Account</p>
+<hr style="border-color:#34445b">
+<p>App: MONEY WAY</p>
+<p>Version: 1.2 Demo</p>
+<p class="small">This app is not connected to any bank or UPI network.</p>
+</div>
+</section>
+
+</main>
+
+<nav>
+<button onclick="show('home')"><span>⌂</span>Home</button>
+<button onclick="show('send')"><span>↗</span>Send</button>
+<button onclick="show('receive')"><span>▦</span>Receive</button>
+<button onclick="show('history')"><span>◷</span>History</button>
+<button onclick="show('profile')"><span>👤</span>Profile</button>
+</nav>
+
+<script>
+let balance=5000;
+let transactions=[];
+
+function show(id){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+window.scrollTo(0,0);
+}
+
+function sendMoney(){
+let name=document.getElementById('receiver').value.trim();
+let upi=document.getElementById('upi').value.trim();
+let amount=Number(document.getElementById('amount').value);
+
+if(!name||!upi||!amount||amount<=0){
+alert('Please enter valid demo payment details.');
+return;
+}
+if(amount>balance){
+alert('Insufficient demo balance.');
+return;
+}
+if(!upi.includes('@')){
+alert('Enter a demo UPI ID with @.');
+return;
+}
+if(!confirm('Confirm DEMO payment of ₹'+amount+' to '+name+'? No real money will be transferred.')){
+return;
+}
+
+balance-=amount;
+document.getElementById('balance').innerText='₹'+balance.toFixed(2);
+
+transactions.unshift({
+name:name,
+amount:amount,
+date:new Date().toLocaleString()
+});
+
+renderTransactions();
+document.getElementById('receiver').value='';
+document.getElementById('upi').value='';
+document.getElementById('amount').value='';
+
+alert('Demo payment successful! No real money was transferred.');
+show('home');
+}
+
+function renderTransactions(){
+let html='';
+transactions.forEach(t=>{
+html+=`<div class="tx">
+<div><b>${escapeText(t.name)}</b><div class="small">${escapeText(t.date)}</div></div>
+<div class="red">-₹${t.amount.toFixed(2)}</div>
+</div>`;
+});
+document.getElementById('transactions').innerHTML=html||'<div class="small">No transactions yet.</div>';
+document.getElementById('recent').innerHTML=html||'<div class="small">No transactions yet.</div>';
+}
+
+function escapeText(s){
+return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+</script>
+</body>
+</html>
+
